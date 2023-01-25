@@ -369,11 +369,6 @@ cd /etc/ImageMagick && cat << EOF | sudo patch
  </policymap>
 EOF
 
-#### daemonize
-cat <<EOF | sudo tee /etc/sysconfig/path_env
-PATH=${SS_USER}/.asdf/shims:${SS_USER}/.asdf/bin:/sbin:/bin:/usr/sbin:/usr/bin=/root/.asdf/shims:/root/.asdf/bin:/sbin:/bin:/usr/sbin:/usr/bin
-EOF
-
 cat <<EOF | sudo tee /etc/systemd/system/shirasagi-unicorn.service
 [Unit]
 Description=Shirasagi Unicorn Server
@@ -387,13 +382,13 @@ SyslogIdentifier=unicorn
 PIDFile=${SS_DIR}/tmp/pids/unicorn.pid
 Type=forking
 TimeoutSec=300
-ExecStart=${ASDF_HOME}/bundle exec unicorn_rails -c config/unicorn.rb -D
+ExecStart=/bin/bash -c 'source /root/.bash_profile && bundle exec unicorn_rails -c config/unicorn.rb -D'
 ExecStop=/usr/bin/kill -QUIT $MAINPID
 ExecReload=/usr/bin/kill -USR2 $MAINPID
 [Install]
 WantedBy=multi-user.target
 EOF
-sudo chown root: /etc/systemd/system/shirasagi-unicorn.service
+sudo chown root. /etc/systemd/system/shirasagi-unicorn.service
 sudo chmod 644 /etc/systemd/system/shirasagi-unicorn.service
 sudo systemctl daemon-reload
 sudo systemctl enable shirasagi-unicorn.service --now
