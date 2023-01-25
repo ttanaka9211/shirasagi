@@ -363,6 +363,9 @@ cd /etc/ImageMagick && cat << EOF | sudo patch
 EOF
 
 #### daemonize
+cat <<EOF | sudo tee /etc/sysconfig/path_env
+PATH=${SS_USER}/.asdf/shims:${SS_USER}/.asdf/bin:/sbin:/bin:/usr/sbin:/usr/bin=/root/.asdf/shims:/root/.asdf/bin:/sbin:/bin:/usr/sbin:/usr/bin
+EOF
 
 cat <<EOF | sudo tee /etc/systemd/system/shirasagi-unicorn.service
 [Unit]
@@ -370,6 +373,7 @@ Description=Shirasagi Unicorn Server
 After=mongod.service
 [Service]
 User=${SS_USER}
+EnvironmentFile=/etc/sysconfig/path_env
 WorkingDirectory=${SS_DIR}
 Environment=RAILS_ENV=production
 SyslogIdentifier=unicorn

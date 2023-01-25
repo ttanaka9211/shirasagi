@@ -4,6 +4,7 @@ After=mongod.service
 
 [Service]
 User=root
+EnvironmentFile=/etc/sysconfig/path_env
 WorkingDirectory=/var/www/shirasagi
 Environment=RAILS_ENV=production
 SyslogIdentifier=unicorn
