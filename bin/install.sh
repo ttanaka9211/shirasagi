@@ -191,7 +191,7 @@ sudo systemctl enable nginx.service --now
 cat <<EOF | sudo tee /etc/nginx/conf.d/http.conf
 server_tokens off;
 server_name_in_redirect off;
-etag off;
+etag on;
 client_max_body_size 100m;
 client_body_buffer_size 256k;
 gzip on;
@@ -317,7 +317,7 @@ location ~* \.svg$ {
     access_log off;
     log_not_found off;
     add_header Content-Disposition "attachment";
-    try_files $uri @app;
+    try_files \$uri @app;
 }
 EOF
 
