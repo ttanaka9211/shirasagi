@@ -48,6 +48,7 @@ if [ ! `which ruby` ]; then exit 1; fi
 asdf plugin add nodejs
 asdf install nodejs 16.19.0
 asdf global nodejs 16.19.0 
+npm install -g yarn
 
 # use devtoolset-11
 source /opt/rh/devtoolset-11/enable
