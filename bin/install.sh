@@ -49,7 +49,8 @@ if [ ! `which ruby` ]; then exit 1; fi
 # use devtoolset-11
 source /opt/rh/devtoolset-11/enable
 
-git clone -b stable https://github.com/shirasagi/shirasagi
+#git clone -b stable https://github.com/shirasagi/shirasagi
+git clone https://github.com/shirasagi/shirasagi
 sudo mkdir -p /var/www
 sudo mv shirasagi $SS_DIR
 
