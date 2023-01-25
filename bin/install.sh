@@ -375,7 +375,6 @@ Description=Shirasagi Unicorn Server
 After=mongod.service
 [Service]
 User=${SS_USER}
-EnvironmentFile=/etc/sysconfig/path_env
 WorkingDirectory=${SS_DIR}
 Environment=RAILS_ENV=production
 SyslogIdentifier=unicorn
