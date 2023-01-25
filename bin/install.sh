@@ -45,6 +45,9 @@ asdf install ruby 3.0.4
 asdf global ruby 3.0.4
 
 if [ ! `which ruby` ]; then exit 1; fi
+asdf plugin add nodejs
+asdf install nodejs lts-gallium
+asdf global nodejs lts-gallium
 
 # use devtoolset-11
 source /opt/rh/devtoolset-11/enable
