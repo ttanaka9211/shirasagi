@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 SS_HOSTNAME=${1:-"example.jp"}
 SS_USER=${2:-"$USER"}
 SS_DIR=/var/www/shirasagi
